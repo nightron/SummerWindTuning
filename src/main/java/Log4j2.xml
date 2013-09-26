@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" name="MyApp" packages="">
+  <appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="%-5p %t  %c{2} - %m%n"/>
+    </Console>
+  </appenders>
+  <loggers>
+    <root level="info">
+      <appender-ref ref="STDOUT"/>
+    </root>
+  </loggers>
+</configuration>

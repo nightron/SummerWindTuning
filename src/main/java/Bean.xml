@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+	<!-- <bean id="dataSource" class=" org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="org.postgresql.Driver" /> <property 
+		name="url" value="jdbc:postgresql://localhost:5432/sw" /> <property name="username" 
+		value="postgres" /> <property name="password" value="p" /> </bean> -->
+
+	<context:annotation-config />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="persistenceUN" />
+	</bean>
+
+	<bean id="loader" class="tuning.Loader.Loader">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="customerDAO" class="dao.CustomerDAOImpl"/>
+	<bean id="categoryDAO" class="dao.CategoryDAOImpl"/>
+	<bean id="customerDemographicsDAO" class="dao.CustomerDemographicsDAOImpl"/>
+	<bean id="orderDAO" class="dao.OrderDAOImpl"/>
+	<bean id="orderDetailsDAO" class="dao.OrderDetailsDAOImpl"/>
+	<bean id="employeeDAO" class="dao.EmployeeDAOImpl" />
+	<bean id="supplierDAO" class="dao.SupplierDAOImpl" />
+	<bean id="shipperDAO" class="dao.ShipperDAOImpl" />
+	<bean id="productDAO" class="dao.ProductDAOImpl" />
+	<bean id="listingDAO" class="dao.ListingDAOImpl" />
+
+</beans> 
